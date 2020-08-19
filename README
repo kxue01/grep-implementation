@@ -1,0 +1,47 @@
+/*********************************************************
+ * Comp 15 Project 2: grep
+ * 
+ * 
+ * Author: Kenneth Xue
+ *********************************************************/
+The purpoes of this program is to simulate the GERP program. This is
+achieved by using the FSTree and DirNode classes to traverse through
+the directories and indexing every word in a hash table. 
+
+
+Usage: ./gerp [dir_to_index] [output file]
+
+
+FSTree.h		: interface of FSTree class  (used to explore file directories)
+FSTree.o		: compiled version of FSTree.cpp
+DirNode.h 		: interface of DirNode class (nodes used in FSTree)
+DirNode.o 		: compiled version of DirNode.cpp
+hashExample.cpp : an example on how to use the hash function (and compression) with STL library
+the_gerp		: compiled solution of this assignment (good for comparing purposes)
+README 			: this file
+testmain.cpp 	: my unit test that uses the index class functions to test
+				  if they work properly.
+main.cpp		: Driver for the Gerp Program
+Index.cpp		: The implementation of the index class, used to index
+				  and query words.
+Index.h 		: The interface of the index class
+Makefile		: The makefile of Gerp, type make gerp to make
+
+
+My data structure uses a dynamic array that contains vector of Word structs.
+Each Word is a struct that has the original case, lower case, its hashcode, file
+number(explained later) and line number.
+Furthermore, I had a vector of strings as my filename vector. Everytime I index
+a file, I add that file's path to the filename vector, and remember its position.
+Thus, the file number in the Word struct is the index of the word's file path
+located in the filename vector. 
+To Query, it is O(N), n being the length of the vector inside an index of the
+hashtable.
+The space that it takes up is O(F+W+N), in which F is the amount of files
+W is the amount of words, and N is the capacity of the Dynamic Array.
+One major advantage of this is that the query time is really fast. 
+One disadvantage of this is that it takes up a large amount of space to
+store all the words in an index.
+
+
+
